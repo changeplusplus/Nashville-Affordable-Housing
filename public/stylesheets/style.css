@@ -16,7 +16,11 @@ p{
 }
 
 map{
-	align-items: center
+	align-items: center;
+}
+
+fieldset{
+  align-items: center;
 }
 
 .image{

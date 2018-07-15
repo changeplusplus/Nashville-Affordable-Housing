@@ -8,17 +8,18 @@
 <body>
   <h1>Nashville Affordable Housing</h1>
   <p>A Wond'ry housing application</p>
-  	<form>
-  		<fieldset class="fieldset">
-  			<legend>Housing Preferences</legend>
-  			Rent Maximum:<br>
-  			<input type="text" name="max" placeholder="Dollars"><br>
-	  		Rent Minimum:<br>
-  			<input type="text" name="min" placeholder="Dollars"><br>
-  			Number of Rooms:<br>
-  			<input type="text" name="roomnumber"><br>
-  		</fieldset>
-  	</form>
+	<form action="/results" method="post">
+    	<div>
+        	<label>Rent Maximum:</label>
+        	<input type="text" name="maximum"/><br/>
+    	</div>
+    	<div>
+	        <label>Rent Mininum:</label>
+        	<input type="text" name="minimum"/>
+    	</div>
+    	<div><input type="submit" value="values"/></div>
+	</form>
+  		
   		
   	<picture>
   	<img id="map" src="../images/Nashville.jpg" alt="Nashville" class="image" style="width:600px;height:600px;;">

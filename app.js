@@ -3,8 +3,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index.js');
+var usersRouter = require('./routes/users.js');
+var resultsRouter = require('./routes/results.js');
+
+const targetBaseUrl = "http://localhost:3000/";
 
 var app = express();
 
@@ -16,5 +19,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/results', resultsRouter);
+
+app.post('/results', function(req, res){
+	console.log("You sent %s and %s in the form", req.body.maximum, req.body.minimum);
+	
+	res.sendFile(__dirname + "/public/map.html");
+})
+
+
 
 module.exports = app;

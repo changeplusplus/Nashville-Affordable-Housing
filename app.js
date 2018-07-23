@@ -6,6 +6,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/users.js');
 var resultsRouter = require('./routes/results.js');
+var map = require('./public/javascripts/map.js')
 
 const targetBaseUrl = "http://localhost:3000/";
 
@@ -23,6 +24,8 @@ app.use('/results', resultsRouter);
 
 app.post('/results', function(req, res){
 	console.log("You sent %s and %s in the form", req.body.maximum, req.body.minimum);
+
+	map.SendParam(req.body.maximum, req.body.minimum);
 	
 	res.sendFile(__dirname + "/public/map.html");
 })

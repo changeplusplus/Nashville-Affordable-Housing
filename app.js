@@ -5,7 +5,6 @@ var logger = require('morgan');
 var Zillow = require("node-zillow");
 var pug = require('pug');
 
-var zillow = new Zillow("X1-ZWz1gkfsqbdyx7_1pt0f");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

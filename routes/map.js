@@ -2,7 +2,9 @@ var express = require('express');
 var ZillowFile = require('../views/zillowCall');
 var Zillow = require("node-zillow");
 
-var zillow = new Zillow("X1-ZWz1gkfsqbdyx7_1pt0f");
+const apiKey = require("../apiKey");
+
+var zillow = new Zillow(apiKey.ZillowAPIKey);
 
 var router = express.Router();
 
@@ -25,7 +27,7 @@ router.post('/', function(req, res){
 		.then(function(results){
 			console.log("The results are: ");
 			console.log(results);
-			ZillowFile.ZillowData(results);
+			console.log(ZillowFile.ZillowData(results));
 			//res.render('map', {title: ZillowFile.ZillowData(results)});
 		})
 	/*

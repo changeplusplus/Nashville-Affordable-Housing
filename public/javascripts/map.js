@@ -1,22 +1,54 @@
-var express = require('express');
+var maxRent = -1;
+var minRent = -1;
 
-var map = {};	
+var Map = {};
 
-var maxRent;
-var minRent;
+var neighborhoodsWithZIndex = {};
 
-map.SendParam = function setValues(maxRentParam, minRentParam){
+Map.SendParam = function setValues(maxRentParam, minRentParam){
 	maxRent = maxRentParam;
 	minRent = minRentParam;
 	console.log("map.js received the params:" + maxRent + " and " + minRent);
 }
 
-map.ReturnMax = function returnMax(){
+Map.ZillowData = function zillowData(response){
+	var j = 0;
+
+	var regionArray = response.response.list.region;
+
+	console.log("Stuff below");
+
+	for (var i = 0; i < numberOfLocations; ++i){
+		var region = regionArray[i];
+
+		if (region.zindex != null){
+
+			console.log(region.zindex[0]._);
+			console.log(region.latitude[0]);
+			console.log(region.longitude[0]);
+
+			Object.assign(neighborhoodsWithZIndex[j], {zindex: region.zindex[0]._});
+			Object.assign(neighborhoodsWithZIndex[j], {latitude: region.latitude[0]})
+			Object.assign(neighborhoodsWithZIndex[j], {longitude: region.longitude[0]});
+			++j;
+		}
+	}
+
+	console.log(neighborhoodsWithZIndex);
+
+	console.log("Done");
+}
+
+Map.isFilled = function isFilled(){	
+	return maxRent != -1;
+}
+
+Map.ReturnMax = function returnMax(){
 	console.log("" + maxRent);
 	return maxRent;
 }
 
-map.ReturnMin = function returnMin(){
+Map.ReturnMin = function returnMin(){
 	console.log("" + minRent);
 	return minRent;
 }
@@ -32,4 +64,4 @@ map.RenderMap = function initMap() {
 }
 */
 
-module.exports = map;
+module.exports = Map;

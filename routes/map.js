@@ -1,19 +1,19 @@
 var express = require('express');
+var ZillowFile = require('../views/zillowCall');
 var Zillow = require("node-zillow");
 
 var zillow = new Zillow("X1-ZWz1gkfsqbdyx7_1pt0f");
 
 var router = express.Router();
 
-/* GET home page. */
+/* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	console.log("Made it to the map event listener");
+  res.render('map', { title: 'Express' });
 });
 
-/*
-router.post('/map', function(req, res){
+router.post('/', function(req, res){
 	console.log("You sent %s and %s in the form", req.body.Max, req.body.Min);
-
 
 	var parameters = {
 		state: "TN",
@@ -23,14 +23,25 @@ router.post('/map', function(req, res){
 
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			console.log("Whole response");
+			console.log("The results are: ");
 			console.log(results);
-			ZillowData(results);
+			ZillowFile.ZillowData(results);
+			//res.render('map', {title: ZillowFile.ZillowData(results)});
 		})
+	/*
+	map.QuandlData(quandl.dataset("ZILLOW", "ZIP_RMP_37011", function(err, resp){
+		if (err){
+			throw err;
+		}
 
-		res.render('map');
+		console.log(resp);
+		return resp;
+	}))
+	*/
 })
 
+
+/*
 var ZillowData = function zillowData(response){
 	var j = 0;
 

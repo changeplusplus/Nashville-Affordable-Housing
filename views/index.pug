@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  body
+  form(action='/map', method='POST')
+    p
+      | Maximum Rent: <br/>
+      input(type='number', name='Max', value='')
+      | <br/> Minimum Rent: <br/>
+      input(type='number', name='Min', value='')
+    input(type='submit', value='Submit')
+
+    img.image(src='../images/Nashville.jpg')

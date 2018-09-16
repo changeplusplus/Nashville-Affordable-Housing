@@ -26,9 +26,7 @@ router.post('/', function(req, res){
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
 			console.log("The results are: ");
-			console.log(results);
-			console.log(ZillowFile.ZillowData(results));
-			//res.render('map', {title: ZillowFile.ZillowData(results)});
+			res.render('map', {title: ZillowFile.ZillowData(results)});
 		})
 	/*
 	map.QuandlData(quandl.dataset("ZILLOW", "ZIP_RMP_37011", function(err, resp){

@@ -15,6 +15,9 @@ Zillow.ZillowData = function zillowData(response){
 
       var neighborhood = {};
 
+      console.log(region);
+
+      neighborhood.Name = region.name[0];
       neighborhood.ZIndex = region.zindex[0]._;
       neighborhood.Lat = region.latitude[0];
       neighborhood.Long = region.longitude[0];

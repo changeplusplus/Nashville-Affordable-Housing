@@ -1,8 +1,28 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Nashville Neighborhoods
+  p Welcome to Nashville
 
-  body
-  p Hello
+
+  body 
+  ul
+  each val in title
+    - var name = "" + val.Name;
+    - var index = "" + val.ZIndex;
+    li The average value of homes in #{name} is #{index}
+
+
+  #map
+
+  script.
+    var map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 36.1627, lng: -86.7816},
+        zoom: 8
+      });
+    }
+  
+  script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYto64Ak34HVWuvAxhOfg-wErJeFXqUqM&callback=initMap")

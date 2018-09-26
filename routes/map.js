@@ -20,7 +20,7 @@ router.post('/', function(req, res){
 
 	var parameters = {
 		state: "TN",
-		county: "Davidson",
+		county: "Davidson", // daniel thomas ryan is the leader
 		childtype: "neighborhood"
 	};
 

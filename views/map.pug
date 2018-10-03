@@ -4,40 +4,57 @@ block content
   h1 Nashville Neighborhoods
   p Welcome to Nashville
 
+html
+    head
+        title
+            Nashville
+        meta
+            name = "viewport" content="initial-scale=1.0"
+            charset = "utf-8"
+        style
+            #map {
+               height: 100%; 
+            }
+            html, body {
+                height: 100%
+                margin: 0;
+                padding: 0;
+            }
 
-  body 
-  ul
-  each val in title
-    - var name = "" + val.Name;
-    - var index = "" + val.ZIndex;
-    - var lat = val.Latitude;
-    - var long = val.Longitude;
+    body
+        div id="map"
+    ul
+        each val in title
+            - var name = "" + val.Name;
+            - var index = "" + val.ZIndex;
+            - var lat = val.Latitude;
+            - var long = val.Longitude;
     
     
-    li The average value of homes in #{name} is #{index}
-    p = dropMarker(lat,long)
+            li The average value of homes in #{name} is #{index}
+            p = dropMarker(lat,long)
 
 
   #map
 
-  script.
-    var map;
+        script.
+            var map;
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 36.1627, lng: -86.7816},
-        zoom: 8
-      });
-    }
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 36.1627, lng: -86.7816},
+                zoom: 8
+                });
+            }
     
-    function dropMarker(latitude,longitude) {
-    marker = new google.maps.Marker({
-        animation: google.maps.Animation.DROP,
-        position: {lat: latitude, lng: longitude},
-        map: map
-     });
+            function dropMarker(latitude,longitude) {
+                marker = new google.maps.Marker({
+                animation: google.maps.Animation.DROP,
+                position: {lat: latitude, lng: longitude},
+                map: map
+                });
      
-     return marker;
-    }
+                return marker;
+            }
   
   script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYto64Ak34HVWuvAxhOfg-wErJeFXqUqM&callback=initMap")

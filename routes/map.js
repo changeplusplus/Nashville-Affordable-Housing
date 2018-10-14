@@ -26,8 +26,7 @@ router.post('/', function(req, res){
 
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			console.log(ZillowFile.ZillowData(results));
-			res.render('map', {title: ZillowFile.ZillowData(results)});
+			res.render('map', {title: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
 		})
 })
 

@@ -1,28 +1,44 @@
 extends layout
 
 block content
-  h1 Nashville Neighborhoods
-  p Welcome to Nashville
-
-
-  body 
-  ul
-  each val in title
-    - var name = "" + val.Name;
-    - var index = "" + val.ZIndex;
-    li The average value of homes in #{name} is #{index}
-
+  body
+  |  <style>
+  |   /* Always set the map height explicitly to define the size of the div
+  |   * element that contains the map. */
+  |   #map {
+  |     height: 100%;
+  |   }
+  |   /* Optional: Makes the sample page fill the window. */
+  |   html, body {
+  |     height: 100%;
+  |     margin: 0;
+  |     padding: 0;
+  |   }
+  |  </style>
 
   #map
 
-  script.
+  script(type='text/javascript').
     var map;
+
+    var first = '#{title}';
+    console.log(first);
+
+    var latlong = new google.maps.LatLng(parseFloat(first[0].Lat),parseFloat(first[0].Long));
+    console.log(latlong);
+    var myLatLng = {lat: first[0].Lat, lng: first[0].Long};
 
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 36.1627, lng: -86.7816},
         zoom: 8
       });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
     }
   
-  script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYto64Ak34HVWuvAxhOfg-wErJeFXqUqM&callback=initMap")
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYto64Ak34HVWuvAxhOfg-wErJeFXqUqM&callback=initMap" async defer)

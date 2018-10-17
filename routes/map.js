@@ -10,13 +10,15 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+
+
+	// We will have to add a zillow call here in the case of a page refresh
+
 	console.log("Made it to the map event listener");
   res.render('map', { title: 'Express' });
 });
 
 router.post('/', function(req, res){
-
-	console.log("Received %s and %s in the form", req.body.Max, req.body.Min);
 
 	var parameters = {
 		state: "TN",
@@ -26,7 +28,7 @@ router.post('/', function(req, res){
 
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			res.render('map', {title: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
+			res.render('map', {data: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
 		})
 })
 

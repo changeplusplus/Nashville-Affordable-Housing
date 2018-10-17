@@ -7,18 +7,12 @@ Zillow.ZillowData = function zillowData(response, minRent, maxRent){
   return regionArray.reduce(function(data, neighborhood) {
     if (neighborhood.zindex != null && neighborhood.zindex[0]._ * .008 > minRent && neighborhood.zindex[0]._ * .011 < maxRent){
 
-      console.log(Number(neighborhood.latitude[0].trim()));
-      console.log(Number(neighborhood.longitude[0].trim()));
-
-      console.log(typeof Number(neighborhood.latitude[0]));
-      console.log(typeof Number(neighborhood.longitude[0]));
-
       var newNeighborhood =           
         {
           ZIndex: neighborhood.zindex[0]._,
           Name: neighborhood.name[0],
-          Lat: Math.round(Number(neighborhood.latitude[0])),
-          Long: Math.round(Number(neighborhood.longitude[0]))
+          Lat: Number(neighborhood.latitude[0]),
+          Long: Number(neighborhood.longitude[0])
         };
 
       data.push(newNeighborhood);

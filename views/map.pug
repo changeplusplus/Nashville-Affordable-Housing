@@ -21,24 +21,33 @@ block content
   script(type='text/javascript').
     var map;
 
-    var first = '#{title}';
-    console.log(first);
-
-    var latlong = new google.maps.LatLng(parseFloat(first[0].Lat),parseFloat(first[0].Long));
-    console.log(latlong);
-    var myLatLng = {lat: first[0].Lat, lng: first[0].Long};
-
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 36.1627, lng: -86.7816},
         zoom: 8
       });
 
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!'
-      });
+
+      addMarkers()
+    }
+
+    function addMarkers(){
+      var first = !{JSON.stringify(data)};
+
+      first.forEach(function(neighborhood){
+        var myLatLng = {lat: neighborhood.Lat, lng: neighborhood.Long};
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          label: {
+            text: neighborhood.Name,
+            // Add in the custom label here
+          },
+        });
+
+        marker.setMap(map);
+      })
     }
   
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYto64Ak34HVWuvAxhOfg-wErJeFXqUqM&callback=initMap" async defer)

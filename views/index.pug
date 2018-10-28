@@ -3,6 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to the #{title}
+  P Powered by Zillow
 
   body
   form(action='/map', method='POST')
@@ -13,4 +14,4 @@ block content
       input(type='number', name='Min', value='')
     input(type='submit', value='Submit')
 
-    img.image(src='../images/Nashville.jpg')
+    img.image(src='/images/Nashville.jpg')

@@ -1,17 +1,26 @@
 extends layout
 
+
 block content
-  h1= title
-  p Welcome to the #{title}
+
+  #top(class="topnav")
+    #title(class="title" style="float:left") Nashville Affordable Housing
+    a(class="active" href="#home" style="float:right") Home
+    a(href="#about" style="float:right") About
+    a(href="#mission" style="float:right") Mission
+
   P Powered by Zillow
 
-  body
-  form(action='/map', method='POST')
-    p
-      | Maximum Rent: <br/>
-      input(type='number', name='Max', value='')
-      | <br/> Minimum Rent: <br/>
-      input(type='number', name='Min', value='')
-    input(type='submit', value='Submit')
+  body(class="bg")
 
-    img.image(src='/images/Nashville.jpg')
+  #input(align="center")
+    form(action='/map', method='POST')
+      p
+        | Maximum Rent: <br/>
+        input(type='number', name='Max', value='')
+        | <br/> Minimum Rent: <br/>
+        input(type='number', name='Min', value='')
+      input(type='submit', value='Submit')
+
+  #footer(class="footer")
+    p Powered by Zillow

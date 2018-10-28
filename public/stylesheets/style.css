@@ -1,11 +1,16 @@
+style.
+
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 form {
     display: inline-block;
+    text-align: center;
 }
 
 a {
@@ -20,10 +25,6 @@ p{
 	text-align: center;
 }
 
-map{
-	align-items: center;
-}
-
 fieldset{
   align-items: center;
 }
@@ -36,10 +37,83 @@ fieldset{
   align-content: center;
 }
 
+.input{
+  width: 40%;
+  border: solid block 1px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-size: 24px;
+    background-color: #333;
+}
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8%;
+  background-color: #4169e1;
+  color: white;
+  text-align: left;
+}
+
 
 .image{
 	display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("../images/nashvilleSkyline.jpg");
+    background-position: 0px 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Full height */
+    margin-top: 0px;
+    height: 100%; 
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    
+}
+
+.topnav {
+    background-color: #4169e1;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #333;
+    color: white;
 }

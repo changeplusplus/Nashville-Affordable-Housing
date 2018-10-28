@@ -7,7 +7,7 @@ Zillow.ZillowData = function zillowData(response, minRent, maxRent){
   return regionArray.reduce(function(data, neighborhood) {
     if (neighborhood.zindex != null && neighborhood.zindex[0]._ * .008 > minRent && neighborhood.zindex[0]._ * .011 < maxRent){
 
-      var newNeighborhood =           
+      var newNeighborhood =
         {
           ZIndex: neighborhood.zindex[0]._,
           Name: neighborhood.name[0],

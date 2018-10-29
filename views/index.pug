@@ -1,17 +1,59 @@
 extends layout
 
+
 block content
-  h1= title
-  p Welcome to the #{title}
-  P Powered by Zillow
 
-  body
-  form(action='/map', method='POST')
-    p
-      | Maximum Rent: <br/>
-      input(type='number', name='Max', value='')
-      | <br/> Minimum Rent: <br/>
-      input(type='number', name='Min', value='')
-    input(type='submit', value='Submit')
+  #top(class="topnav")
+    #title(class="title" style="float:left") Nashville Affordable Housing
+    a(class="active" href="#home" style="float:right") Home
+    a(href="#about" style="float:right") About
+    a(href="#mission" style="float:right") Mission
 
-    img.image(src='/images/Nashville.jpg')
+  body(class="bg")
+
+  #myModal(class="modal")
+    span(class="close") &times;
+    #input(align="center" class="modal-content")
+      form(action='/map', method='POST')  
+        p
+          | Maximum Rent: <br/>
+          input(type='number', name='Max', value='')
+          | <br/> Minimum Rent: <br/>
+          input(type='number', name='Min', value='')
+        input(type='submit', value='Submit')
+
+
+  #button
+    button(type="button" class="button" id="myBtn") Search
+
+  #footer(class="footer")
+    p Powered by Zillow
+
+  script.
+
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+

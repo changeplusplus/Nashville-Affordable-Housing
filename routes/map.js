@@ -48,9 +48,9 @@ router.post('/', function(req, res){
 //        console.log(e);
 //    });
     
-    let params = [{latitude: '36.1627', longitude: '-86.7816', radius: '1000'}];
+    //let params = [{latitude: '36.1627', longitude: '-86.7816', radius: '1000'}];
 //    
-    yelp.query('businesses/search', params).then(data => {});
+    //yelp.query('businesses/search', params).then(data => {});
 
     
     /**end of yelp**/

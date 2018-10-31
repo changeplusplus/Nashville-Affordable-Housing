@@ -5,9 +5,9 @@ var ZillowFile = require('./zillowCall');
 var Zillow = require("node-zillow");
 
 const apiKey = require("../apiKey");
-const yelp = require('yelp-fusion');
+// const yelp = require('yelp-fusion');
 
-const client = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
+// const client = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
 var zillow = new Zillow(apiKey.ZillowAPIKey);
 
 var router = express.Router();

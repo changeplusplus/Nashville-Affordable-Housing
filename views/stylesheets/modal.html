@@ -29,36 +29,62 @@
             border: 1px solid #888;
             width: 80%;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
             animation-name: animatetop;
             animation-duration: 0.4s
         }
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+        /*!* The Close Button *!*/
+        /*.close {*/
+            /*color: #aaaaaa;*/
+            /*float: right;*/
+            /*font-size: 28px;*/
+            /*font-weight: bold;*/
+        /*}*/
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        /*.close:hover,*/
+        /*.close:focus {*/
+            /*color: #000;*/
+            /*text-decoration: none;*/
+            /*cursor: pointer;*/
+        /*}*/
 
-        /* Add Animation */
-        @keyframes animatetop {
-            from {top: -300px; opacity: 0}
-            to {top: 0; opacity: 1}
-        }
+        /*!* Add Animation *!*/
+        /*@keyframes animatetop {*/
+            /*from {top: -300px; opacity: 0}*/
+            /*to {top: 0; opacity: 1}*/
+        /*}*/
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
     </style>
 </head>
 <body> <!-- /* HTML code -->
-
-<h2>Modal Example</h2>
 
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Open Modal</button>
@@ -76,7 +102,15 @@
             <input type='number' name='Max' value = ''><br>
             Minimum Rent:<br>
             <input type='number' name='Min' value=''><br>
-            <input type = 'submit' value='Submit'><
+
+            <input type="checkbox" name="subject" id="Schools Nearby">
+            <label for="Schools Nearby">Schools Nearby</label>
+            <input type="checkbox" name="subject" id="Restaurants Nearby">
+            <label for="Restaurants Nearby">Restaurants Nearby</label>
+            <input type="checkbox" name="subject" id="Parks Nearby">
+            <label for="Parks Nearby">Parks Nearby</label>
+
+            <input type = 'submit' value='Submit'>
         </div></form>
 
     </div>

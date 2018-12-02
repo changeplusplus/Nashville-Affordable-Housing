@@ -8,11 +8,16 @@ const apiKey = require("../apiKey");
 const yelp = require('yelp-fusion');
 const Client = require('node-rest-client').Client;
 
-const yelpclient = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
+const client = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
+
+// const yelp = require('yelp-fusion');
+
+// const client = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
+ //9879f9a925b6b5ae9c9881659fee3fc0abd2a3df
 var zillow = new Zillow(apiKey.ZillowAPIKey);
 
 var router = express.Router();
-var client = new Client();
+var schoolsclient = new Client();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -65,7 +70,7 @@ router.post('/', function(req, res){
 
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			client.get("https://api.greatschools.org/schools/TN/Nashville?key=" + apiKey.SchoolsAPIKey + "&limit=10", function(data, response){
+			schoolsclient.get("https://api.greatschools.org/schools/TN/Nashville?key=" + apiKey.SchoolsAPIKey + "&limit=10", function(data, response){
     			console.log(data);
     			res.render('map', {data: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
     		});

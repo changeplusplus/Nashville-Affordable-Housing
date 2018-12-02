@@ -6,11 +6,13 @@ var Zillow = require("node-zillow");
 
 const apiKey = require("../apiKey");
 const yelp = require('yelp-fusion');
+const Client = require('node-rest-client').Client;
 
-const client = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
+const yelpclient = yelp.client('KRx1-BYf9i8VbOnb0zb55WmzssYGbVwZFriVwmBzbSgBDM7erv3RPjHBlp2D77A3SElKSUERp-pNEcyRFMOJsPa2GQdMUCmOkIbbqnusqwt47zTrFGAJR6TqGMDPW3Yx');
 var zillow = new Zillow(apiKey.ZillowAPIKey);
 
 var router = express.Router();
+var client = new Client();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -55,10 +57,19 @@ router.post('/', function(req, res){
     
     /**end of yelp**/
 
+    /**Great Schools**/
+    var schoolArgs = {
+    	key: apiKey.SchoolsAPIKey,
+    	limit: 10
+    }
+
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			res.render('map', {data: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
-		})
+			client.get("https://api.greatschools.org/schools/TN/Nashville?key=" + apiKey.SchoolsAPIKey + "&limit=10", function(data, response){
+    			console.log(data);
+    			res.render('map', {data: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
+    		});
+		});
 })
 
 module.exports = router;

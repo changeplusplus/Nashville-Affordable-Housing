@@ -20,11 +20,16 @@ block content
           input(type='number', name='Max', value='')
           | <br/> Minimum Rent: <br/>
           input(type='number', name='Min', value='')
+          | <br/> Schools 
+          input(type='checkbox', name='Schools')
+          | Parks
+          input(type='checkbox', name='Parks')
+
         input(type='submit', value='Submit')
 
 
   #button
-    button(type="button" class="button" id="myBtn") Search
+    button(type="button" class="btn blue rounded" id="myBtn") Search
 
   #footer(class="footer")
     p Powered by Zillow

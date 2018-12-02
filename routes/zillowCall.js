@@ -1,3 +1,5 @@
+var geoHash = require('latlon-geohash');
+
 var Zillow = {}
 
 Zillow.ZillowData = function zillowData(response, minRent, maxRent){
@@ -12,7 +14,8 @@ Zillow.ZillowData = function zillowData(response, minRent, maxRent){
           ZIndex: neighborhood.zindex[0]._,
           Name: neighborhood.name[0],
           Lat: Number(neighborhood.latitude[0]),
-          Long: Number(neighborhood.longitude[0])
+          Long: Number(neighborhood.longitude[0]),
+          Geohash: geoHash.encode(neighborhood.latitude[0], neighborhood.longitude[0], 10)
         };
 
       data.push(newNeighborhood);

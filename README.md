@@ -6,6 +6,6 @@ In order to run this application, you must install Node.JS and call a npm instal
 The server can be seen at localhost:3000
 
 
-![Photo of current front page](public/images/InitialPageSept13.PNG?raw=true "Title")
+![Photo of current search screen](public/images/searchScreen.PNG?raw=true "Title")
 
-![Photo of current data stream](public/images/ZillowDataSept13.PNG?raw=true "Title")
+![Photo of current data stream](public/images/dataDisplay.PNG?raw=true "Title")

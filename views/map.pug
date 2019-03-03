@@ -37,14 +37,35 @@ block content
       first.forEach(function(neighborhood){
         var myLatLng = {lat: neighborhood.Lat, lng: neighborhood.Long};
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          label: {
-            text: neighborhood.Name, // text: neighborhood.ZIndex
-              // Add in the custom label here
-          },
-        });
+        var marker;
+
+        var shape = {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 8,
+          strokeColor: '#393'
+        };
+
+        if(neighborhood.Type == 'neighborhood'){
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            label: {
+              text: neighborhood.Name, // text: neighborhood.ZIndex
+                // Add in the custom label here
+            },
+          });
+        } else {
+            marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: shape,
+            animation: google.maps.Animation.DROP,
+            label: {
+              text: neighborhood.Name,
+            },
+          });
+        }
 
         marker.setMap(map);
       })

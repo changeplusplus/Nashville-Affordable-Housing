@@ -2,6 +2,7 @@
 
 var express = require('express');
 var ZillowFile = require('./zillowCall');
+//var GreatSchools = require('./greatSchools');
 var Zillow = require("node-zillow");
 
 const apiKey = require("../apiKey");
@@ -70,9 +71,13 @@ router.post('/', function(req, res){
 
 	zillow.get("GetRegionChildren", parameters)
 		.then(function(results){
-			schoolsclient.get("https://api.greatschools.org/schools/TN/Nashville?key=" + apiKey.SchoolsAPIKey + "&limit=10", function(data, response){
-    			console.log(data);
-    			res.render('map', {data: ZillowFile.ZillowData(results, req.body.Min, req.body.Max)});
+			schoolsclient.get("https://api.greatschools.org/schools/TN/Nashville?key=" + apiKey.SchoolsAPIKey + "&limit=100", function(data, response){
+    			console.log(req.body);
+    			if (req.body.Schools == null){
+    				res.render('map', {data: ZillowFile.ZillowDataNoSchools(results, req.body.Min, req.body.Max)});
+    			} else {
+    				res.render('map', {data: ZillowFile.ZillowDataWithSchools(results, req.body.Min, req.body.Max, Array.from(data['schools'].school))});
+    			}
     		});
 		});
 })

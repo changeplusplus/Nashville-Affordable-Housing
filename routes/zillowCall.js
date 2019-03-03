@@ -2,20 +2,63 @@ var geoHash = require('latlon-geohash');
 
 var Zillow = {}
 
-Zillow.ZillowData = function zillowData(response, minRent, maxRent){
+Zillow.ZillowDataWithSchools = function zillowData(response, minRent, maxRent, schoolData){
 
   var regionArray = response.response.list.region;
+  var geoSet = new Set([1,2]);
 
-  return regionArray.reduce(function(data, neighborhood) {
+  var parsedZillowData = regionArray.reduce(function(data, neighborhood) {
     if (neighborhood.zindex != null && neighborhood.zindex[0]._ * .008 > minRent && neighborhood.zindex[0]._ * .011 < maxRent){
 
       var newNeighborhood =
         {
           ZIndex: neighborhood.zindex[0]._,
+          Type: 'neighborhood',
           Name: neighborhood.name[0],
           Lat: Number(neighborhood.latitude[0]),
-          Long: Number(neighborhood.longitude[0]),
-          Geohash: geoHash.encode(neighborhood.latitude[0], neighborhood.longitude[0], 10)
+          Long: Number(neighborhood.longitude[0])
+          //Geohash: geoHash.encode(neighborhood.latitude[0], neighborhood.longitude[0], 5)
+        };
+
+      geoSet.add(geoHash.encode(neighborhood.latitude[0], neighborhood.longitude[0], 5));
+
+      data.push(newNeighborhood);
+    }
+      return data;
+  }, []);
+
+  return schoolData.reduce(function(result, schools){
+    var schoolGeoHash = geoHash.encode(schools["lat"], schools["lon"], 5);
+    if (geoSet.has(schoolGeoHash)){
+      var newSchool = 
+      {
+        Name: schools['name'],
+        Type: 'school',
+        ParentRating: schools['parentRating'],
+        Lat: Number(schools['lat']),
+        Long: Number(schools['lon'])
+      }
+
+      parsedZillowData.push(newSchool);
+    }
+    return parsedZillowData;
+  }, []);
+}
+
+Zillow.ZillowDataNoSchools = function zillowData(response, minRent, maxRent){
+
+  var regionArray = response.response.list.region;
+
+ return regionArray.reduce(function(data, neighborhood) {
+    if (neighborhood.zindex != null && neighborhood.zindex[0]._ * .008 > minRent && neighborhood.zindex[0]._ * .011 < maxRent){
+
+      var newNeighborhood =
+        {
+          ZIndex: neighborhood.zindex[0]._,
+          Type: 'neighborhood',
+          Name: neighborhood.name[0],
+          Lat: Number(neighborhood.latitude[0]),
+          Long: Number(neighborhood.longitude[0])
         };
 
       data.push(newNeighborhood);
